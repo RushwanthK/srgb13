@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Semantic design tokens. Components use these (bg-surface, text-ink, text-brand…)
+ * instead of raw palette colours, so light/dark is switched in one place.
+ */
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --color-canvas: #f4f7f5;
+  --color-surface: #ffffff;
+  --color-subtle: #eef3f0;
+  --color-line: #e1e8e4;
+  --color-line-strong: #c7d3cc;
+  --color-ink: #0e1f18;
+  --color-ink-2: #2f4038;
+  --color-muted: #5b6b63;
+  --color-faint: #93a39b;
+
+  --color-brand: #059669;
+  --color-brand-strong: #047857;
+  --color-brand-soft: #e8f8f0;
+  --color-header: #053d2e;
+
+  --color-good: #047857;
+  --color-bad: #e11d48;
+  --color-bad-soft: #fff1f2;
+  --color-warn: #c2620a;
+  --color-warn-soft: #fff8e6;
+  --color-under: #0284c7;
+}
+
+/* Chart colours (SVG reads them via var(), see components/charts/theme.ts) */
+:root {
+  --chart-forecast: var(--color-brand);
+  --chart-actual: var(--color-ink);
+  --chart-band: #a7f3d0;
+  --chart-over: var(--color-bad);
+  --chart-under: var(--color-under);
+  --chart-muted: #94a3a0;
+  --chart-grid: var(--color-line);
+  --chart-axis: var(--color-muted);
+  --chart-cutoff: #f59e0b;
+  --chart-cursor: rgba(5, 150, 105, 0.08);
+}
+
+.dark {
+  color-scheme: dark;
+
+  --color-canvas: #08110d;
+  --color-surface: #0f1a15;
+  --color-subtle: #15231d;
+  --color-line: #1f3029;
+  --color-line-strong: #2d4239;
+  --color-ink: #e6f0eb;
+  --color-ink-2: #c2d1c9;
+  --color-muted: #8ea29a;
+  --color-faint: #5e7068;
+
+  --color-brand: #34d399;
+  --color-brand-strong: #6ee7b7;
+  --color-brand-soft: #0f2e22;
+  --color-header: #06100c;
+
+  --color-good: #34d399;
+  --color-bad: #fb7185;
+  --color-bad-soft: #2b1218;
+  --color-warn: #fbbf24;
+  --color-warn-soft: #2a2110;
+  --color-under: #38bdf8;
+
+  --chart-band: #0f5a42;
+  --chart-muted: #64766e;
+  --chart-cutoff: #fbbf24;
+  --chart-cursor: rgba(52, 211, 153, 0.08);
+}
+
+@layer base {
+  body {
+    @apply bg-canvas text-ink antialiased;
+    transition: background-color 150ms ease;
+  }
+}
+
+/* Recharts focus outline is noisy on click */
+.recharts-wrapper :focus,
+.recharts-surface:focus {
+  outline: none;
+}

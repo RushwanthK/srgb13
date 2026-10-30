@@ -1,0 +1,27 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      ELEXON_BASE_URL: ${ELEXON_BASE_URL:-https://data.elexon.co.uk/bmrs/api/v1}
+      HTTP_TIMEOUT_S: ${HTTP_TIMEOUT_S:-30}
+      HTTP_MAX_RETRIES: ${HTTP_MAX_RETRIES:-3}
+      CACHE_TTL_S: ${CACHE_TTL_S:-3600}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/v1/health')"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_PROXY_TARGET: http://backend:8000
+    depends_on:
+      backend:
+        condition: service_healthy
