@@ -7,7 +7,7 @@ GridBrick is a web portal for a UK utility's **day-ahead power procurement team*
 
 It uses only national-level Elexon BMRS data: **FUELHH** (actual generation, `fuelType = WIND`) and **WINDFOR** (wind generation forecasts, every published run).
 
-> **Live app:** `<add Vercel URL>`
+> **Live app:** `https://srgb13.vercel.app/`
 > **Scope note:** the portal analyses wind forecasts and their accuracy. It does **not** compute total procurement volume, because consumer demand data is outside the assessment scope.
 
 ---
