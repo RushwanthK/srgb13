@@ -186,8 +186,6 @@ flowchart LR
 ├─ vercel.json / .vercelignore / .python-version
 ├─ docker-compose.yml
 ├─ .env.example
-├─ docs/DEMO_SCRIPT.md        # Two-part video script and checklist
-├─ docs/ANALYSIS_AND_CUSTOMER_GUIDE.md  # Correctness review, independent verification, demo plan, procurement value
 └─ docs/DEPLOYMENT.md        # Step-by-step Vercel deployment (frontend + backend, free plan)
 ```
 
